@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeter-client 
+  labels:
+    app: greeter-client
+    kind: grpc 
+    owner: ianthpun
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greeter-client
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: greeter-client 
+        kind: grpc 
+        owner: ianthpun
+        version: v1
+    spec:
+      containers:
+        - name: greeter-client 
+          image: greeter/client
+          imagePullPolicy: IfNotPresent 
+          ports:
+          - name: micro-port 
+            containerPort: 8080 
+          env:
+            - name: MICRO_SERVER_ADDRESS
+              value: "0.0.0.0:8080"

@@ -1,0 +1,31 @@
+apiVersion: skaffold/v2alpha1
+kind: Config
+metadata:
+  name: micro-example
+build:
+  artifacts:
+  - image: greeter/service
+    context: cmd/greeter/service
+    custom:
+      buildCommand: make containerize 
+      dependencies:
+        paths:
+          - .
+          # - ../../../pkg
+          # - ../../../internal
+          - ../../../proto
+  - image: greeter/client
+    context: cmd/greeter/client
+    custom:
+      buildCommand: make containerize 
+      dependencies:
+        paths:
+          - .
+          # - ../../../pkg
+          # - ../../../internal
+          - ../../../proto
+deploy:
+  kubectl:
+    manifests:
+    - cmd/greeter/service/k8s/local.yaml
+    - cmd/greeter/client/k8s/local.yaml
