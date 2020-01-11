@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"time"
 
 	proto "github.com/ianthpun/micro-example/proto"
 	micro "github.com/micro/go-micro"
@@ -18,11 +19,14 @@ func main() {
 	greeter := proto.NewGreeterService("greeter", service.Client())
 
 	// Call the greeter
-	rsp, err := greeter.Hello(context.Background(), &proto.Request{Name: "John"})
-	if err != nil {
-		fmt.Println(err)
-	}
+	for {
+		time.Sleep(5 * time.Second)
+		rsp, err := greeter.Hello(context.Background(), &proto.Request{Name: "John"})
+		if err != nil {
+			panic(err)
+		}
 
-	// Print response
-	fmt.Println(rsp.Msg)
+		// Print response
+		fmt.Println(rsp.Msg)
+	}
 }
