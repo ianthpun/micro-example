@@ -1,14 +1,21 @@
 syntax = "proto3";
 
 service Greeter {
-	rpc Hello(Request) returns (Response) {}
+	rpc GreetingCommand(Command) returns (Response) {}
+}
+message Command {
+       string msg = 1;
 }
 
-message Request {
-	string name = 1;
+message Reponse {
+	bool success = 1;
 }
 
 message Response {
 	string msg = 1;
 }
 
+message GreetEvent {
+        string id = 1;
+        string msg = 2;
+}
