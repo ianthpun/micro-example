@@ -4,15 +4,16 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/ianthpun/micro-example/internal/kafka"
 	proto "github.com/ianthpun/micro-example/proto"
-    "github.com/micro/go-micro/metadata"
 	micro "github.com/micro/go-micro"
+	"github.com/micro/go-micro/metadata"
 )
 
 type Greeter struct{}
 
 func (g *Greeter) GreetingCommand(ctx context.Context, req *proto.Command, rsp *proto.Response) error {
-	rsp.Msg =  req.Msg
+	rsp.Msg = req.Msg
 	return nil
 }
 func processEvent(ctx context.Context, event *proto.GreetEvent) error {
@@ -31,7 +32,7 @@ func main() {
 	// Init will parse the command line flags.
 	service.Init()
 
-	micro.RegisterSubscriber("greeting.topic", service.Server(), processEvent)
+	micro.RegisterSubscriber(kafka.GREETING_TOPIC, service.Server(), processEvent)
 
 	// Register handler
 	proto.RegisterGreeterHandler(service.Server(), new(Greeter))

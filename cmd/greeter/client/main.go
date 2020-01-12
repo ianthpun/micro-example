@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-log/log"
 	"github.com/google/uuid"
+	"github.com/ianthpun/micro-example/internal/kafka"
 	proto "github.com/ianthpun/micro-example/proto"
 	micro "github.com/micro/go-micro"
 )
@@ -18,7 +19,7 @@ func main() {
 	// Initialise the client and parse command line flags
 	service.Init()
 	// create publisher
-	pub1 := micro.NewPublisher("greeting.topic", service.Client())
+	pub1 := micro.NewPublisher(kafka.GREETING_TOPIC, service.Client())
 
 	// Create new greeter client
 	//greeter := proto.NewGreeterService("greeter", service.Client())
