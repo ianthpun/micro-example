@@ -14,5 +14,6 @@
 ## Whats next
 - use zap.logger
 - converting old middlewares
+- figure out cleaner way for configs
 - All datastore layer (gopg) 
 
