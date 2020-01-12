@@ -19,3 +19,5 @@
 - figure out cleaner way for configs
 - All datastore layer (gopg) 
 
+## Credits
+https://github.com/d1egoaz/minikube-kafka-cluster
