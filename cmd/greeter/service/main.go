@@ -11,7 +11,7 @@ import (
 )
 
 type Greeter struct{
-	p *micro.Publisher
+	pub micro.Publisher
 }
 
 func (g *Greeter) GreetingCommand(ctx context.Context, req *proto.Command, rsp *proto.Response) error {
@@ -23,7 +23,11 @@ func (g *Greeter) processEvent(ctx context.Context, event *proto.GreetEvent) err
 	md, _ := metadata.FromContext(ctx)
 	fmt.Printf("[greeting.topic] Received event %+v with metadata %+v\n", event, md)
 	// do something with event
-	return nil
+	e := proto.GreetedEvent{
+		Id: event.Id,
+		Success: true,
+	}
+	return g.pub.Publish(ctx, &e)
 }
 
 func main() {
@@ -39,7 +43,7 @@ func main() {
 	// create publisher
 	pub1 := micro.NewPublisher(kafka.GREETING_TOPIC, service.Client())
 
-	greeter := Greeter{p: &pub1}
+	greeter := Greeter{pub: pub1}
 
 	micro.RegisterSubscriber(kafka.GREETING_TOPIC, service.Server(), greeter.processEvent)
 
