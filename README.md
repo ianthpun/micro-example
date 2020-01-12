@@ -1,10 +1,12 @@
 #Go-microservices example 
 ## Requirements
 - `skaffold` through `brew install skaffold`
-- `Docker-desktop`/`minikube` 
+- `Docker-desktop`/`minikube`
 
 ## How to run
-`skaffold run`
+- set up your local cluster with `minikube` or `docker-desktop`. `Docker-desktop` is easiest https://www.techrepublic.com/article/how-to-add-kubernetes-support-to-docker-desktop/
+- `skaffold run`
+- ctrl+c to delete your pods + namespaces (good cleanup)
 
 ## Whats happening
 1) kafka + zookeeper are deployed in your local cluster
