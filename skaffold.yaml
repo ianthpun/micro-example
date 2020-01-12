@@ -5,35 +5,32 @@ metadata:
 build:
   artifacts:
   - image: greeter/producer
-    context: cmd/greeter
     custom:
-      buildCommand: make containerize 
+      buildCommand: make containerize SERVICE_DIR=cmd/greeter
       dependencies:
         paths:
-          - .
-          # - ../../../pkg
-          - ../../internal
-          - ../../proto
+          - ./cmd/greeter
+          # - ./pkg
+          - ./internal
+          - ./proto
   - image: greeter/go-micro-consumer
-    context: cmd/consumers/go-micro
     custom:
-      buildCommand: make containerize 
+      buildCommand: make containerize SERVICE_DIR=cmd/consumers/go-micro
       dependencies:
         paths:
-          - .
-          # - ../../../pkg
-          - ../../../internal
-          - ../../../proto
+          - ./cmd/consumers/go-micro
+          # - ./pkg
+          - ./internal
+          - ./proto
   - image: greeter/watermill-consumer
-    context: cmd/consumers/watermill
     custom:
-      buildCommand: make containerize
+      buildCommand: make containerize SERVICE_DIR=cmd/consumers/watermill
       dependencies:
         paths:
-          - .
-          # - ../../../pkg
-          - ../../../internal
-          - ../../../proto
+          - ./cmd/consumers/watermill
+          # - ./pkg
+          - ./internal
+          - ./proto
 deploy:
   kubectl:
     manifests:

@@ -2,12 +2,14 @@
 
 FROM golang:1.13 as builder
 
+ARG SERVICE_DIR
+
 copy proto app/proto
 copy internal app/internal
 copy go.mod app/go.mod
 copy go.sum app/go.sum
 copy vendor app/vendor/
-copy cmd/greeter/ app/cmd/greeter/
+copy ${SERVICE_DIR} app/${SERVICE_DIR}/
 
 WORKDIR app
 
@@ -19,7 +21,7 @@ RUN --mount=type=cache,target=/go/pkg/mod \
      -v \
      -ldflags '-w -s' \
      -o /server \
-     ./cmd/greeter
+     ./${SERVICE_DIR}
 
 FROM gcr.io/distroless/base
 
