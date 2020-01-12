@@ -12,7 +12,6 @@ import (
 	micro "github.com/micro/go-micro"
 )
 
-
 func main() {
 
 	// Create a new service
@@ -29,7 +28,7 @@ func main() {
 		time.Sleep(5 * time.Second)
 		ev := &proto.GreetEvent{
 			Id:  uuid.New().String(),
-			Msg: fmt.Sprintf("Im Jon through kafka"),
+			Msg: fmt.Sprintf("Im Ian through kafka"),
 		}
 
 		fmt.Printf("publishing %+v\n", ev)
