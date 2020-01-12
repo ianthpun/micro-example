@@ -23,11 +23,12 @@ func (g *Greeter) processEvent(ctx context.Context, event *proto.GreetEvent) err
 	md, _ := metadata.FromContext(ctx)
 	fmt.Printf("[greeting.topic] Received event %+v with metadata %+v\n", event, md)
 	// do something with event
-	e := proto.GreetedEvent{
-		Id: event.Id,
-		Success: true,
-	}
-	return g.pub.Publish(ctx, &e)
+	//e := proto.GreetedEvent{
+	//	Id: event.Id,
+	//	Success: true,
+	//}
+	//return g.pub.Publish(ctx, &e)
+	return nil
 }
 
 func main() {

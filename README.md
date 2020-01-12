@@ -19,5 +19,9 @@
 - figure out cleaner way for configs
 - All datastore layer (gopg) 
 
+## things to figure out
+- how do i set the consumer offset to start somewhere besides latest?
+- emitting different events on the same topic (maybe using generic broker.Event to have the interface inside?)
+
 ## Credits
 https://github.com/d1egoaz/minikube-kafka-cluster
