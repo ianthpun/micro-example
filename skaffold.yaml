@@ -27,5 +27,10 @@ build:
 deploy:
   kubectl:
     manifests:
+    - cluster/namespace.yaml
+    - cluster/zookeeper/*.yaml
+    - cluster/kafka/*.yaml
+    - cluster/kafka-manager/*.yml
+      #- cluster/kafka-monitor/*.yml // doesn't seem to work
     - cmd/greeter/service/k8s/local.yaml
     - cmd/greeter/client/k8s/local.yaml

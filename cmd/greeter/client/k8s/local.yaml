@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: greeter-client 
+  namespace: go-micro-example 
   labels:
     app: greeter-client
     kind: grpc 
@@ -31,3 +32,7 @@ spec:
           env:
             - name: MICRO_SERVER_ADDRESS
               value: "0.0.0.0:8080"
+            - name: MICRO_BROKER
+              value: "kafka"
+            - name: MICRO_BROKER_ADDRESS
+              value: kafka:9092

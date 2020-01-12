@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+
 	// Create a new service
 	service := micro.NewService(micro.Name("greeter.client"))
 	// Initialise the client and parse command line flags
