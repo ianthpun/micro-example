@@ -10,13 +10,16 @@ import (
 	"github.com/micro/go-micro/metadata"
 )
 
-type Greeter struct{}
+type Greeter struct{
+	p *micro.Publisher
+}
 
 func (g *Greeter) GreetingCommand(ctx context.Context, req *proto.Command, rsp *proto.Response) error {
 	rsp.Msg = req.Msg
 	return nil
 }
-func processEvent(ctx context.Context, event *proto.GreetEvent) error {
+
+func (g *Greeter) processEvent(ctx context.Context, event *proto.GreetEvent) error {
 	md, _ := metadata.FromContext(ctx)
 	fmt.Printf("[greeting.topic] Received event %+v with metadata %+v\n", event, md)
 	// do something with event
@@ -32,10 +35,16 @@ func main() {
 	// Init will parse the command line flags.
 	service.Init()
 
-	micro.RegisterSubscriber(kafka.GREETING_TOPIC, service.Server(), processEvent)
+
+	// create publisher
+	pub1 := micro.NewPublisher(kafka.GREETING_TOPIC, service.Client())
+
+	greeter := Greeter{p: &pub1}
+
+	micro.RegisterSubscriber(kafka.GREETING_TOPIC, service.Server(), greeter.processEvent)
 
 	// Register handler
-	proto.RegisterGreeterHandler(service.Server(), new(Greeter))
+	proto.RegisterGreeterHandler(service.Server(), &greeter)
 
 	// Run the server
 	if err := service.Run(); err != nil {

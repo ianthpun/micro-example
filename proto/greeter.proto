@@ -19,3 +19,8 @@ message GreetEvent {
         string id = 1;
         string msg = 2;
 }
+
+message GreetedEvent {
+    string id = 1;
+    bool success = 2;
+}
