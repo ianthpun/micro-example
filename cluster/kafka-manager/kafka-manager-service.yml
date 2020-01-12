@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: kafka-manager
-  namespace: go-micro-example
+  namespace: greeter-example
 spec:
   type: NodePort
   selector:

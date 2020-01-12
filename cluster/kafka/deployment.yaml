@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kafka
-  namespace: go-micro-example
+  namespace: greeter-example
   labels:
     app: kafka
 spec:
@@ -20,7 +20,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: kafka
-  namespace: go-micro-example
+  namespace: greeter-example
 spec:
   selector:
     matchLabels:

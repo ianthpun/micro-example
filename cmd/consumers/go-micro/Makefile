@@ -1,5 +1,5 @@
 MONOREPO_ROOT=`pwd`/../../../
-SERVICE_DIR=cmd/greeter/service
+SERVICE_DIR=cmd/consumers/go-micro
 
 export GO111MODULE := on
 export CGO_ENABLED := 0

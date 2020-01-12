@@ -5,7 +5,7 @@ metadata:
   labels:
     app: zookeeper-service
   name: zookeeper-service
-  namespace: go-micro-example 
+  namespace: greeter-example
 spec:
   type: NodePort
   ports:

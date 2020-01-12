@@ -4,25 +4,35 @@ metadata:
   name: micro-example
 build:
   artifacts:
-  - image: greeter/service
-    context: cmd/greeter/service
+  - image: greeter/producer
+    context: cmd/greeter
     custom:
       buildCommand: make containerize 
       dependencies:
         paths:
           - .
           # - ../../../pkg
-          # - ../../../internal
+          - ../../internal
+          - ../../proto
+  - image: greeter/go-micro-consumer
+    context: cmd/consumers/go-micro
+    custom:
+      buildCommand: make containerize 
+      dependencies:
+        paths:
+          - .
+          # - ../../../pkg
+          - ../../../internal
           - ../../../proto
-  - image: greeter/client
-    context: cmd/greeter/client
+  - image: greeter/watermill-consumer
+    context: cmd/consumers/watermill
     custom:
-      buildCommand: make containerize 
+      buildCommand: make containerize
       dependencies:
         paths:
           - .
           # - ../../../pkg
-          # - ../../../internal
+          - ../../../internal
           - ../../../proto
 deploy:
   kubectl:
@@ -32,5 +42,6 @@ deploy:
     - cluster/kafka/*.yaml
     - cluster/kafka-manager/*.yml
       #- cluster/kafka-monitor/*.yml // doesn't seem to work
-    - cmd/greeter/service/k8s/local.yaml
-    - cmd/greeter/client/k8s/local.yaml
+    - cmd/greeter/k8s/local.yaml
+    - cmd/consumers/go-micro/k8s/local.yaml
+    - cmd/consumers/watermill/k8s/local.yaml

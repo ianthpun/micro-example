@@ -12,15 +12,11 @@ import (
 	micro "github.com/micro/go-micro"
 )
 
-func processEvent (ctx context.Context, event proto.GreetedEvent) error {
-	fmt.Printf("Receied the roundtrip: %+v", event)
-	return nil
-}
 
 func main() {
 
 	// Create a new service
-	service := micro.NewService(micro.Name("greeter.client"))
+	service := micro.NewService(micro.Name("greeter.producer"))
 	// Initialise the client and parse command line flags
 	service.Init()
 	// create publisher
@@ -28,8 +24,6 @@ func main() {
 
 	// Create new greeter client
 	//greeter := proto.NewGreeterService("greeter", service.Client())
-
-	micro.RegisterSubscriber(kafka.GREETING_TOPIC, service.Server(), processEvent)
 
 	for {
 		time.Sleep(5 * time.Second)

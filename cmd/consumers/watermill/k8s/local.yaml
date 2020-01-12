@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: greeter-service 
-  namespace: go-micro-example 
+  name: greeter-watermill-consumer
+  namespace: greeter-example
   labels:
-    app: greeter-service
+    app: greeter-watermill-consumer
     kind: grpc 
     owner: ianthpun
     version: v1
@@ -12,19 +12,19 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: greeter-service
+      app: greeter-watermill-consumer
       version: v1
   template:
     metadata:
       labels:
-        app: greeter-service 
+        app: greeter-watermill-consumer
         kind: grpc 
         owner: ianthpun
         version: v1
     spec:
       containers:
-        - name: greeter-service 
-          image: greeter/service 
+        - name: greeter-watermill-consumer
+          image: greeter/watermill-consumer
           imagePullPolicy: IfNotPresent 
           ports:
           - name: micro-port 

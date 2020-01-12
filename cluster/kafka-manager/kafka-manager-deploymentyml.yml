@@ -2,7 +2,7 @@ apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: kafka-manager
-  namespace: go-micro-example
+  namespace: greeter-example
 spec:
   replicas: 1
   selector:
