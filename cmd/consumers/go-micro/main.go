@@ -10,7 +10,7 @@ import (
 	"github.com/micro/go-micro/metadata"
 )
 
-type Greeter struct{
+type Greeter struct {
 	pub micro.Publisher
 }
 
@@ -34,7 +34,6 @@ func main() {
 
 	// Init will parse the command line flags.
 	service.Init()
-
 
 	// create publisher
 	pub1 := micro.NewPublisher(kafka.GREETING_TOPIC, service.Client())
