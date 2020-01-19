@@ -8,5 +8,3 @@ steps:
       - GO11MODULE=on go test -mod=vendor ./...
   - name: config
     image: bitsbeats/drone-tree-config
-    settings:
-        GITHUB_TOKEN: ef4afbfb9effe8fb0a22ba7cf11f97c11c561106
