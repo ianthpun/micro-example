@@ -1,0 +1,10 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: test
+    image: golang:1.13
+    commands:
+      - GO11MODULE=on go test -mod=vendor ./...
+  - name: config
+    image: bitsbeats/drone-tree-config
