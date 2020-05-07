@@ -26,5 +26,3 @@
 ## Credits
 https://github.com/d1egoaz/minikube-kafka-cluster
 
-
-testing
