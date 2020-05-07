@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:experimental
 
-FROM golang:1.13 as tester 
+FROM golang:1.13 as tester
 COPY go.mod /test/go.mod
 COPY go.sum /test/go.sum
 copy vendor /test/vendor

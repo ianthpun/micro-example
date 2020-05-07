@@ -38,6 +38,7 @@ deploy:
     - cluster/zookeeper/*.yaml
     - cluster/kafka/*.yaml
     - cluster/kafka-manager/*.yml
+    - cluster/cassandra/*.yaml
       #- cluster/kafka-monitor/*.yml // doesn't seem to work
     - cmd/greeter/k8s/local.yaml
     - cmd/consumers/go-micro/k8s/local.yaml

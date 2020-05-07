@@ -7,6 +7,7 @@ require (
 	github.com/ThreeDotsLabs/watermill v1.1.0
 	github.com/ThreeDotsLabs/watermill-kafka/v2 v2.1.0
 	github.com/go-log/log v0.1.0
+	github.com/gocql/gocql v0.0.0-20200505093417-effcbd8bcf0e
 	github.com/gogo/protobuf v1.2.2-0.20190723190241-65acae22fc9d
 	github.com/golang/protobuf v1.3.2
 	github.com/google/uuid v1.1.1
