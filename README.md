@@ -19,7 +19,7 @@
 - figure out cleaner way for configs
 - All datastore layer (gopg) 
 
-## things to figure out
+## Things to figure out
 - how do i set the consumer offset to start somewhere besides latest?
 - emitting different events on the same topic (maybe using generic broker.Event to have the interface inside?)
 
